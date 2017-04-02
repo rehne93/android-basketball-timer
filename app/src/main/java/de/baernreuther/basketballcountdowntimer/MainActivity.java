@@ -1,23 +1,20 @@
 package de.baernreuther.basketballcountdowntimer;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.baernreuther.basketballcountdowntimer.countdowntimer.AttackTimeCountdownTimer;
 import de.baernreuther.basketballcountdowntimer.countdowntimer.GameTimeCountdownTimer;
+import de.baernreuther.basketballcountdowntimer.listener.buttons.RefreshAttackTimeButton;
+import de.baernreuther.basketballcountdowntimer.listener.buttons.StartGameButton;
+import de.baernreuther.basketballcountdowntimer.listener.editboxes.AttackTimeEditText;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     TextView gameTimeTextView;
 
     @BindView(R.id.startGameButton)
-    ToggleButton startGameButton;
+    Button startGameButton;
 
     @BindView(R.id.refreshAttackTime)
     Button refreshAttackTimeButton;
@@ -54,44 +51,7 @@ public class MainActivity extends AppCompatActivity {
         attackTimeCountdownTimer =  AttackTimeCountdownTimer.AttackTimeCountdownFactory(24, 1000, attackTime, gameTimeCountdownTimer);
 
         initializeFields();
-
-        //TODO Refactor and remove the onclick listener implementations here
-        startGameButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if(attackTimeCountdownTimer.hasStoped()){
-                    attackTimeCountdownTimer = AttackTimeCountdownTimer.AttackTimeCountdownFactory(24, 1000, attackTime, gameTimeCountdownTimer);
-                }
-
-                if(gameTimeCountdownTimer.isPaused()){
-                   gameTimeCountdownTimer.start();
-                   attackTimeCountdownTimer.start();
-               }else{
-                   gameTimeCountdownTimer.pause();
-                   attackTimeCountdownTimer.pause();
-               }
-
-            }
-        });
-
-        refreshAttackTimeButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public  void onClick(View v){
-                attackTimeCountdownTimer.cancel();
-                attackTimeCountdownTimer = AttackTimeCountdownTimer.AttackTimeCountdownFactory(24,1000,attackTime,gameTimeCountdownTimer);
-                attackTimeCountdownTimer.start();
-            }
-        });
-
-        offensiveReboundButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                attackTimeCountdownTimer.cancel();
-                attackTimeCountdownTimer = AttackTimeCountdownTimer.AttackTimeCountdownFactory(14,1000,attackTime,gameTimeCountdownTimer);
-                attackTimeCountdownTimer.start();
-            }
-        });
-
+        initializeListeners();
         editFieldsCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -99,30 +59,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        attackTime.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            //Not necessary
-            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            // Not necessary
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //We need to check whether the field is empty because it throws an error when it is empty. We put in zero if there is no string inside to prevent this.
-                if(editFieldsCheckbox.isChecked() && gameTimeCountdownTimer.isPaused()) {
-                    String time = attackTime.getText().toString();
-                    if(time.equals("")){
-                        time = "0";
-                    }
-                    attackTimeCountdownTimer.cancel();
-                    attackTimeCountdownTimer = AttackTimeCountdownTimer.AttackTimeCountdownFactory(Integer.valueOf(time), 1000, attackTime, gameTimeCountdownTimer);
-                }
-            }
-        });
     }
 
     /*
@@ -132,6 +69,16 @@ public class MainActivity extends AppCompatActivity {
         attackTime.setEnabled(!attackTime.isEnabled());
     }
 
+    /*
+    Initializes all listeners.
+     */
+    private void initializeListeners() {
+        refreshAttackTimeButton.setOnClickListener(new RefreshAttackTimeButton(attackTime, attackTimeCountdownTimer, gameTimeCountdownTimer, 24));
+        offensiveReboundButton.setOnClickListener(new RefreshAttackTimeButton(attackTime, attackTimeCountdownTimer, gameTimeCountdownTimer, 14));
+        startGameButton.setOnClickListener(new StartGameButton(attackTime, attackTimeCountdownTimer, gameTimeCountdownTimer));
+
+        attackTime.addTextChangedListener(new AttackTimeEditText(editFieldsCheckbox, attackTime, gameTimeCountdownTimer, attackTimeCountdownTimer));
+    }
 
 
 }

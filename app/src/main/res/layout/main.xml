@@ -19,19 +19,7 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/attackTime" />
 
-    <ToggleButton
-        android:id="@+id/startGameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="-50dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.408" />
+
 
     <Button
         android:id="@+id/refreshAttackTime"
@@ -69,5 +57,13 @@
         android:text="Korrigieren"
         tools:layout_editor_absoluteX="106dp"
         tools:layout_editor_absoluteY="19dp" />
+
+    <Button
+        android:id="@+id/startGameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteY="447dp"
+        tools:layout_editor_absoluteX="173dp" />
 
 </android.support.constraint.ConstraintLayout>

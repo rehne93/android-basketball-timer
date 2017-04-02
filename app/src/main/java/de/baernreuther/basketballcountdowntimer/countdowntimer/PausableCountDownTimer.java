@@ -90,7 +90,4 @@ public abstract class PausableCountDownTimer{
         return isPaused;
     }
 
-    public final void setMillisRemaining(long newTime){
-        this.millisInFuture = newTime;
-    }
 }
