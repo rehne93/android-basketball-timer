@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.baernreuther.basketballcountdowntimer.countdowntimer.AttackTimeCountdownTimer;
 import de.baernreuther.basketballcountdowntimer.countdowntimer.GameTimeCountdownTimer;
 import de.baernreuther.basketballcountdowntimer.listener.buttons.RefreshAttackTimeButton;
 import de.baernreuther.basketballcountdowntimer.listener.buttons.StartGameButton;
@@ -37,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     CheckBox editFieldsCheckbox;
 
     GameTimeCountdownTimer gameTimeCountdownTimer = null;
-    AttackTimeCountdownTimer attackTimeCountdownTimer = null;
 
 
     //TODO Throw exception when attacktime lower 1 ore greater than 30.
@@ -48,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main);
         ButterKnife.bind(this);
         gameTimeCountdownTimer = new GameTimeCountdownTimer(100000,1000, gameTimeTextView);
-        attackTimeCountdownTimer =  AttackTimeCountdownTimer.AttackTimeCountdownFactory(24, 1000, attackTime, gameTimeCountdownTimer);
 
         initializeFields();
         initializeListeners();
@@ -73,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
     Initializes all listeners.
      */
     private void initializeListeners() {
-        refreshAttackTimeButton.setOnClickListener(new RefreshAttackTimeButton(attackTime, attackTimeCountdownTimer, gameTimeCountdownTimer, 24));
-        offensiveReboundButton.setOnClickListener(new RefreshAttackTimeButton(attackTime, attackTimeCountdownTimer, gameTimeCountdownTimer, 14));
-        startGameButton.setOnClickListener(new StartGameButton(attackTime, attackTimeCountdownTimer, gameTimeCountdownTimer));
+        refreshAttackTimeButton.setOnClickListener(new RefreshAttackTimeButton(attackTime, gameTimeCountdownTimer, 24));
+        offensiveReboundButton.setOnClickListener(new RefreshAttackTimeButton(attackTime, gameTimeCountdownTimer, 14));
+        startGameButton.setOnClickListener(new StartGameButton(attackTime, gameTimeCountdownTimer));
 
-        attackTime.addTextChangedListener(new AttackTimeEditText(editFieldsCheckbox, attackTime, gameTimeCountdownTimer, attackTimeCountdownTimer));
+        attackTime.addTextChangedListener(new AttackTimeEditText(editFieldsCheckbox, attackTime, gameTimeCountdownTimer));
     }
 
 

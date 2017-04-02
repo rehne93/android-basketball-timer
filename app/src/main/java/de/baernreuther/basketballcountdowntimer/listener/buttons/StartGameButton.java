@@ -13,34 +13,36 @@ import de.baernreuther.basketballcountdowntimer.countdowntimer.GameTimeCountdown
 public class StartGameButton implements View.OnClickListener {
 
     private EditText attackTime;
-    private AttackTimeCountdownTimer attackTimeCountdownTimer;
     private GameTimeCountdownTimer gameTimeCountdownTimer;
 
     /**
      * Creates a button to start and pause the game.
      *
      * @param attackTime
-     * @param attackTimeCountdownTimer
      * @param gameTimeCountdownTimer
      */
-    public StartGameButton(EditText attackTime, AttackTimeCountdownTimer attackTimeCountdownTimer, GameTimeCountdownTimer gameTimeCountdownTimer) {
+    public StartGameButton(EditText attackTime, GameTimeCountdownTimer gameTimeCountdownTimer) {
         this.attackTime = attackTime;
-        this.attackTimeCountdownTimer = attackTimeCountdownTimer;
         this.gameTimeCountdownTimer = gameTimeCountdownTimer;
     }
 
     @Override
     public void onClick(View v) {
-        if (attackTimeCountdownTimer.hasStoped()) {
-            attackTimeCountdownTimer = AttackTimeCountdownTimer.AttackTimeCountdownFactory(24, 1000, attackTime, gameTimeCountdownTimer);
+        if (AttackTimeCountdownTimer.getUniqueInstance() != null) {
+            if (AttackTimeCountdownTimer.getUniqueInstance().hasStoped()) {
+                AttackTimeCountdownTimer.createUniqueInstance(24, 1000, attackTime, gameTimeCountdownTimer);
+            }
+        } else {
+            AttackTimeCountdownTimer.createUniqueInstance(24, 1000, attackTime, gameTimeCountdownTimer);
         }
 
         if (gameTimeCountdownTimer.isPaused()) {
             gameTimeCountdownTimer.start();
-            attackTimeCountdownTimer.start();
+            AttackTimeCountdownTimer.getUniqueInstance().start();
         } else {
             gameTimeCountdownTimer.pause();
-            attackTimeCountdownTimer.pause();
+            AttackTimeCountdownTimer.getUniqueInstance().pause();
         }
     }
+
 }

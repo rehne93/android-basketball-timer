@@ -18,13 +18,12 @@ public class AttackTimeEditText implements TextWatcher {
     private CheckBox allowEditingCheckBox;
     private EditText attackTime;
     private GameTimeCountdownTimer gameTimeCountdownTimer;
-    private AttackTimeCountdownTimer attackTimeCountdownTimer;
 
-    public AttackTimeEditText(CheckBox allowEditingCheckBox, EditText attackTime, GameTimeCountdownTimer gameTimeCountdownTimer, AttackTimeCountdownTimer attackTimeCountdownTimer) {
+    // TODO Fix me
+    public AttackTimeEditText(CheckBox allowEditingCheckBox, EditText attackTime, GameTimeCountdownTimer gameTimeCountdownTimer) {
         this.allowEditingCheckBox = allowEditingCheckBox;
         this.attackTime = attackTime;
         this.gameTimeCountdownTimer = gameTimeCountdownTimer;
-        this.attackTimeCountdownTimer = attackTimeCountdownTimer;
     }
 
     @Override
@@ -45,8 +44,9 @@ public class AttackTimeEditText implements TextWatcher {
             if (time.equals("")) {
                 time = "0"; //Small workaround
             }
-            attackTimeCountdownTimer.cancel();
-            attackTimeCountdownTimer = AttackTimeCountdownTimer.AttackTimeCountdownFactory(Integer.valueOf(time), 1000, attackTime, gameTimeCountdownTimer);
+            AttackTimeCountdownTimer.getUniqueInstance().cancel();
+            AttackTimeCountdownTimer.createUniqueInstance(Integer.valueOf(time), 1000, attackTime, gameTimeCountdownTimer);
+
         }
     }
 }

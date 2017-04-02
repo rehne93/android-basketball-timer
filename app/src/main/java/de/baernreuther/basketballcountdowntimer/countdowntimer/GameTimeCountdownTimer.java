@@ -12,6 +12,7 @@ import de.baernreuther.basketballcountdowntimer.time.TimeConverter;
 
 public class GameTimeCountdownTimer extends PausableCountDownTimer {
 
+    // TODO Implement singleton variante
     private TextView timeLeftTextView;
 
     public GameTimeCountdownTimer(long millisInFuture, long countDownInterval, TextView timeLeftTextView) {

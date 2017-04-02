@@ -18,6 +18,28 @@ import de.baernreuther.basketballcountdowntimer.time.TimeConverter;
 public class AttackTimeCountdownTimer extends PausableCountDownTimer {
 
 
+    private static AttackTimeCountdownTimer uniqueInstance;
+    private EditText attackTimeText;
+    private PausableCountDownTimer gameTimeCountDownTimer;
+    private boolean hasStoped = false;
+
+
+    private AttackTimeCountdownTimer(long millisInFuture, long countDownInterval, EditText attackTimeEditText, PausableCountDownTimer gameTime) {
+        super(millisInFuture, countDownInterval);
+        this.attackTimeText = attackTimeEditText;
+        this.gameTimeCountDownTimer = gameTime;
+    }
+
+    //TODO Throiw exception if null
+    public static AttackTimeCountdownTimer createUniqueInstance(int seconds, long interval, EditText attackTimeText, PausableCountDownTimer gameTimeCountDownTimer) {
+        uniqueInstance = AttackTimeCountdownTimer.AttackTimeCountdownFactory(seconds, interval, attackTimeText, gameTimeCountDownTimer);
+        return uniqueInstance;
+    }
+
+    public static AttackTimeCountdownTimer getUniqueInstance() {
+        return uniqueInstance;
+    }
+
     /**
      * Creates an instance of an Attack Countdowntimer.
      * @param seconds seconds left on the new clock
@@ -27,20 +49,8 @@ public class AttackTimeCountdownTimer extends PausableCountDownTimer {
      * @return an instance of AttackTimeCountdownTimer containing the new time.
      */
     @Contract("_, _, _, _ -> !null")
-    public static AttackTimeCountdownTimer AttackTimeCountdownFactory(int seconds, long interval, EditText attackTimeEditText, PausableCountDownTimer gameTimeContdown){
+    private static AttackTimeCountdownTimer AttackTimeCountdownFactory(int seconds, long interval, EditText attackTimeEditText, PausableCountDownTimer gameTimeContdown) {
         return new AttackTimeCountdownTimer(seconds*1000, interval, attackTimeEditText, gameTimeContdown);
-    }
-
-
-
-    private EditText attackTimeText;
-    private PausableCountDownTimer gameTimeCountDownTimer;
-    private boolean hasStoped = false;
-
-    private AttackTimeCountdownTimer(long millisInFuture, long countDownInterval, EditText attackTimeEditText, PausableCountDownTimer gameTime) {
-        super(millisInFuture, countDownInterval);
-        this.attackTimeText = attackTimeEditText;
-        this.gameTimeCountDownTimer = gameTime;
     }
 
     /**

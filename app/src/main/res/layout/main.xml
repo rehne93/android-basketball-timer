@@ -4,20 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="de.baernreuther.basketballcountdowntimer.MainActivity">
+    tools:context="de.baernreuther.basketballcountdowntimer.MainActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
 
     <TextView
         android:id="@+id/gameTimeTextView"
         android:layout_width="36dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:text="00:00"
-        app:layout_constraintHorizontal_bias="0.451"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.095"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/attackTime" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 
@@ -25,45 +24,55 @@
         android:id="@+id/refreshAttackTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="87dp"
+        android:layout_marginLeft="152dp"
         android:text="New 24s"
-        tools:layout_editor_absoluteY="447dp"
-        app:layout_constraintLeft_toRightOf="@+id/startGameButton"
-        android:layout_marginLeft="26dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/offensiveReboundButton" />
 
     <EditText
         android:id="@+id/attackTime"
         android:layout_width="105dp"
         android:layout_height="44dp"
+        android:layout_marginTop="50dp"
         android:ems="10"
+        android:gravity="center"
         android:inputType="number"
-        tools:layout_editor_absoluteX="104dp"
-        android:layout_marginBottom="138dp"
-        app:layout_constraintBottom_toTopOf="@+id/startGameButton"
-        />
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameTimeTextView" />
 
     <Button
         android:id="@+id/offensiveReboundButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="87dp"
+        android:layout_marginLeft="16dp"
         android:text="New 14s"
-        tools:layout_editor_absoluteY="445dp"
-        app:layout_constraintRight_toLeftOf="@+id/startGameButton"
-        android:layout_marginRight="8dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <CheckBox
         android:id="@+id/editFieldsCheckbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
         android:text="Korrigieren"
-        tools:layout_editor_absoluteX="106dp"
-        tools:layout_editor_absoluteY="19dp" />
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/attackTime" />
 
     <Button
         android:id="@+id/startGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteY="447dp"
-        tools:layout_editor_absoluteX="173dp" />
+        android:layout_marginBottom="39dp"
+        android:text="Start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintLeft_toRightOf="@+id/offensiveReboundButton"
+        app:layout_constraintRight_toLeftOf="@+id/refreshAttackTime" />
 
 </android.support.constraint.ConstraintLayout>
