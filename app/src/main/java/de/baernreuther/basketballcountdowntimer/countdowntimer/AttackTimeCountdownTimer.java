@@ -3,8 +3,6 @@ package de.baernreuther.basketballcountdowntimer.countdowntimer;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.jetbrains.annotations.Contract;
-
 import de.baernreuther.basketballcountdowntimer.time.TimeConverter;
 
 /**
@@ -12,45 +10,42 @@ import de.baernreuther.basketballcountdowntimer.time.TimeConverter;
  * Implements a Countdown for the attacking time, usually within 24 seconds or less.
  * Contains a GameTime Countdown to pause it when the attack time is over (which is in the current rules included).
  * If the timer stopped, we need to create a new one. If the timer is stopped, we can assume the game has paused. Therefore we
- * will create a new one if hasStoped is true.
+ * will create a new one if stopped is true.
  */
 
 public class AttackTimeCountdownTimer extends PausableCountDownTimer {
 
 
+    /*
+    We need to only have access to one single instance of this. This instance can be replaced whenever we want, but still only one is allowed to exist.
+     */
     private static AttackTimeCountdownTimer uniqueInstance;
+    /*
+    The edittext for the offense time.
+     */
     private EditText attackTimeText;
-    private PausableCountDownTimer gameTimeCountDownTimer;
-    private boolean hasStoped = false;
+    /*
+      If the timer has stopped or not.
+     */
+    private boolean stopped;
 
 
-    private AttackTimeCountdownTimer(long millisInFuture, long countDownInterval, EditText attackTimeEditText, PausableCountDownTimer gameTime) {
+    private AttackTimeCountdownTimer(long millisInFuture, long countDownInterval, EditText attackTimeEditText) {
         super(millisInFuture, countDownInterval);
         this.attackTimeText = attackTimeEditText;
-        this.gameTimeCountDownTimer = gameTime;
+        stopped = false;
     }
 
-    //TODO Throiw exception if null
-    public static AttackTimeCountdownTimer createUniqueInstance(int seconds, long interval, EditText attackTimeText, PausableCountDownTimer gameTimeCountDownTimer) {
-        uniqueInstance = AttackTimeCountdownTimer.AttackTimeCountdownFactory(seconds, interval, attackTimeText, gameTimeCountDownTimer);
+    public static AttackTimeCountdownTimer createUniqueInstance(int seconds, long interval, EditText attackTimeText) {
+        uniqueInstance = new AttackTimeCountdownTimer(seconds * 1000, interval, attackTimeText);
         return uniqueInstance;
     }
 
     public static AttackTimeCountdownTimer getUniqueInstance() {
+        if (uniqueInstance == null) {
+            throw new NullPointerException("Trying to get a AttackTimeCountdownTimer uninitialized.");
+        }
         return uniqueInstance;
-    }
-
-    /**
-     * Creates an instance of an Attack Countdowntimer.
-     * @param seconds seconds left on the new clock
-     * @param interval the interval in ms, usually 1000
-     * @param attackTimeEditText the view where the attacktime is
-     * @param gameTimeContdown the timer for the whole time.
-     * @return an instance of AttackTimeCountdownTimer containing the new time.
-     */
-    @Contract("_, _, _, _ -> !null")
-    private static AttackTimeCountdownTimer AttackTimeCountdownFactory(int seconds, long interval, EditText attackTimeEditText, PausableCountDownTimer gameTimeContdown) {
-        return new AttackTimeCountdownTimer(seconds*1000, interval, attackTimeEditText, gameTimeContdown);
     }
 
     /**
@@ -69,11 +64,11 @@ public class AttackTimeCountdownTimer extends PausableCountDownTimer {
     public void onFinish() {
         // TODO Set timepicker to zerop
         attackTimeText.setText(String.valueOf(0));
-        this.hasStoped = true;
-        gameTimeCountDownTimer.pause();
+        this.stopped = true;
+        GameTimeCountdownTimer.getUniqueInstance().pause();
     }
 
-    public boolean hasStoped(){
-        return hasStoped;
+    public boolean hasStopped() {
+        return stopped;
     }
 }

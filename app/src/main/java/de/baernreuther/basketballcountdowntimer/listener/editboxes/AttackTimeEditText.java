@@ -17,13 +17,10 @@ public class AttackTimeEditText implements TextWatcher {
 
     private CheckBox allowEditingCheckBox;
     private EditText attackTime;
-    private GameTimeCountdownTimer gameTimeCountdownTimer;
 
-    // TODO Fix me
-    public AttackTimeEditText(CheckBox allowEditingCheckBox, EditText attackTime, GameTimeCountdownTimer gameTimeCountdownTimer) {
+    public AttackTimeEditText(CheckBox allowEditingCheckBox, EditText attackTime) {
         this.allowEditingCheckBox = allowEditingCheckBox;
         this.attackTime = attackTime;
-        this.gameTimeCountdownTimer = gameTimeCountdownTimer;
     }
 
     @Override
@@ -39,13 +36,13 @@ public class AttackTimeEditText implements TextWatcher {
     @Override
     public void afterTextChanged(Editable s) {
         //We need to check whether the field is empty because it throws an error when it is empty. We put in zero if there is no string inside to prevent this.
-        if (allowEditingCheckBox.isChecked() && gameTimeCountdownTimer.isPaused()) {
+        if (allowEditingCheckBox.isChecked() && GameTimeCountdownTimer.getUniqueInstance().isPaused()) {
             String time = attackTime.getText().toString();
             if (time.equals("")) {
                 time = "0"; //Small workaround
             }
             AttackTimeCountdownTimer.getUniqueInstance().cancel();
-            AttackTimeCountdownTimer.createUniqueInstance(Integer.valueOf(time), 1000, attackTime, gameTimeCountdownTimer);
+            AttackTimeCountdownTimer.createUniqueInstance(Integer.valueOf(time), 1000, attackTime);
 
         }
     }

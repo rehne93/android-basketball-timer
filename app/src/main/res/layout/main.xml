@@ -8,17 +8,6 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="81dp">
 
-    <TextView
-        android:id="@+id/gameTimeTextView"
-        android:layout_width="36dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="00:00"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
 
     <Button
         android:id="@+id/refreshAttackTime"
@@ -34,14 +23,14 @@
         android:id="@+id/attackTime"
         android:layout_width="105dp"
         android:layout_height="44dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="137dp"
         android:ems="10"
         android:gravity="center"
         android:inputType="number"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gameTimeTextView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/offensiveReboundButton"
@@ -74,5 +63,29 @@
         app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintLeft_toRightOf="@+id/offensiveReboundButton"
         app:layout_constraintRight_toLeftOf="@+id/refreshAttackTime" />
+
+    <EditText
+        android:id="@+id/minutesLeft"
+        android:layout_width="104dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="61dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/secondsLeft"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/secondsLeft"
+        android:layout_width="118dp"
+        android:layout_height="41dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

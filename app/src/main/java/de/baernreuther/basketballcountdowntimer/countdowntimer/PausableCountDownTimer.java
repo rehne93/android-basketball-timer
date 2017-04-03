@@ -9,6 +9,8 @@ import android.os.CountDownTimer;
  */
 
 public abstract class PausableCountDownTimer{
+
+
     long millisInFuture = 0;
     long countDownInterval = 0;
     long millisRemaining =  0;

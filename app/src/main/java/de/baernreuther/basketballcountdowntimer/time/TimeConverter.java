@@ -53,5 +53,8 @@ public  class TimeConverter {
         return timeLeft.toString();
     }
 
+    public static int getSeconds(int minutes, int seconds) {
+        return minutes * 60 + seconds;
+    }
 
 }
