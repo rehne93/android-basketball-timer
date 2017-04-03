@@ -62,7 +62,6 @@ public class AttackTimeCountdownTimer extends PausableCountDownTimer {
      */
     @Override
     public void onFinish() {
-        // TODO Set timepicker to zerop
         attackTimeText.setText(String.valueOf(0));
         this.stopped = true;
         GameTimeCountdownTimer.getUniqueInstance().pause();

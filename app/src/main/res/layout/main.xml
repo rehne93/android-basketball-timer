@@ -11,80 +11,143 @@
 
     <Button
         android:id="@+id/refreshAttackTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="87dp"
-        android:layout_marginLeft="152dp"
+        android:layout_width="132dp"
+        android:layout_height="73dp"
+        android:layout_marginBottom="100dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:text="New 24s"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/offensiveReboundButton" />
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <EditText
         android:id="@+id/attackTime"
         android:layout_width="105dp"
         android:layout_height="44dp"
-        android:layout_marginTop="137dp"
+        android:layout_marginTop="66dp"
+        android:background="@null"
         android:ems="10"
         android:gravity="center"
         android:inputType="number"
+        android:text="24"
+        android:textColor="@drawable/attack_edittext"
+        android:textSize="45sp"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/offensiveReboundButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="87dp"
+        android:layout_width="131dp"
+        android:layout_height="71dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="13dp"
         android:text="New 14s"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/refreshAttackTime" />
 
     <CheckBox
         android:id="@+id/editFieldsCheckbox"
+        android:layout_width="125dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:text="Change Times"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/startGameButton"
+        android:layout_width="158dp"
+        android:layout_height="101dp"
+        android:layout_marginBottom="21dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="Start"
+        app:layout_constraintBottom_toTopOf="@+id/editFieldsCheckbox"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <EditText
+        android:id="@+id/minutesLeft"
+        android:layout_width="145dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:ems="14"
+        android:gravity="right"
+        android:inputType="number"
+        android:text="10"
+        android:textColor="@drawable/edit_text_selector"
+        android:textSize="60sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/secondsLeft"
+        android:layout_width="145dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:ems="14"
+        android:gravity="left"
+        android:inputType="number"
+        android:text="00"
+        android:textColor="@drawable/edit_text_selector"
+        android:textSize="60sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:text="Korrigieren"
+        android:layout_marginTop="29dp"
+        android:text=":"
+
+        android:textSize="45sp"
+        app:layout_constraintLeft_toRightOf="@+id/minutesLeft"
+        app:layout_constraintRight_toLeftOf="@+id/secondsLeft"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:text="Game time"
         app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/minutesLeft" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-94dp"
+        android:text="Shot clock"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/attackTime" />
 
     <Button
-        android:id="@+id/startGameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="39dp"
-        android:text="Start"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.421"
-        app:layout_constraintLeft_toRightOf="@+id/offensiveReboundButton"
-        app:layout_constraintRight_toLeftOf="@+id/refreshAttackTime" />
-
-    <EditText
-        android:id="@+id/minutesLeft"
-        android:layout_width="104dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="61dp"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/secondsLeft"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/secondsLeft"
-        android:layout_width="118dp"
-        android:layout_height="41dp"
+        android:id="@+id/helpButton"
+        android:layout_width="37dp"
+        android:layout_height="35dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:inputType="number"
+        android:layout_marginTop="8dp"
+        android:text="\?"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

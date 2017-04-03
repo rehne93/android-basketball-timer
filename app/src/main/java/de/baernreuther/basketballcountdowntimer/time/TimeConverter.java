@@ -53,6 +53,13 @@ public  class TimeConverter {
         return timeLeft.toString();
     }
 
+    /**
+     * Calculates the seconds, given in minute and second format.
+     *
+     * @param minutes minutes
+     * @param seconds seconds
+     * @return number of seconds
+     */
     public static int getSeconds(int minutes, int seconds) {
         return minutes * 60 + seconds;
     }
