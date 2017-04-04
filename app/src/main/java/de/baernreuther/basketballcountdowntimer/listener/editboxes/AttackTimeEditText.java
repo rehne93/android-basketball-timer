@@ -6,12 +6,13 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import de.baernreuther.basketballcountdowntimer.MainActivity;
-import de.baernreuther.basketballcountdowntimer.countdowntimer.AttackTimeCountdownTimer;
 import de.baernreuther.basketballcountdowntimer.countdowntimer.GameTimeCountdownTimer;
+import de.baernreuther.basketballcountdowntimer.countdowntimer.ShotClockCountdownTimer;
 import de.baernreuther.basketballcountdowntimer.dialogs.MessageBoxFragment;
 
 /**
- * Created by René on 02.04.2017.
+ * Created by René Bärnreuther on 02.04.2017.
+ * Allows the user to edit the shotclock whenever the game is paused and he wishes to.
  */
 
 public class AttackTimeEditText implements TextWatcher {
@@ -52,7 +53,7 @@ public class AttackTimeEditText implements TextWatcher {
             if (time.equals("")) {
                 time = "0"; //Small workaround
             }
-            AttackTimeCountdownTimer.getUniqueInstance().cancel();
+            ShotClockCountdownTimer.getUniqueInstance().cancel();
 
             int shotClockLeft = Integer.valueOf(time);
             if (shotClockLeft < 0 || shotClockLeft >= 30) {
@@ -61,7 +62,7 @@ public class AttackTimeEditText implements TextWatcher {
                 messageBoxFragment.show(mainActivity.getFragmentManager(), "Invalid shot clock time");
                 return;
             }
-            AttackTimeCountdownTimer.createUniqueInstance(Integer.valueOf(time), 1000, attackTime);
+            ShotClockCountdownTimer.createUniqueInstance(Integer.valueOf(time), 1000, attackTime);
 
         }
     }

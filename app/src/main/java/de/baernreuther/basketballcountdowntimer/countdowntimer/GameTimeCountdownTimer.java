@@ -21,6 +21,7 @@ public class GameTimeCountdownTimer extends PausableCountDownTimer {
        We need to only have access to one single instance of this. This instance can be replaced whenever we want, but still only one is allowed to exist.
    */
     private static GameTimeCountdownTimer uniqueInstance = null;
+
     private EditText minutesLeft;
     private EditText secondsLeft;
 

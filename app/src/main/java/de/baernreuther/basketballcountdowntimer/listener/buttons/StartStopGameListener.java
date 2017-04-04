@@ -5,8 +5,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import de.baernreuther.basketballcountdowntimer.countdowntimer.AttackTimeCountdownTimer;
+import de.baernreuther.basketballcountdowntimer.MainActivity;
 import de.baernreuther.basketballcountdowntimer.countdowntimer.GameTimeCountdownTimer;
+import de.baernreuther.basketballcountdowntimer.countdowntimer.ShotClockCountdownTimer;
 
 /**
  * Created by René Bärnreuther on 02.04.2017.
@@ -14,7 +15,7 @@ import de.baernreuther.basketballcountdowntimer.countdowntimer.GameTimeCountdown
  *
  */
 
-public class StartGameButton implements View.OnClickListener {
+public class StartStopGameListener implements View.OnClickListener {
 
     /*
     The edittext to show the time for an offense.
@@ -23,7 +24,7 @@ public class StartGameButton implements View.OnClickListener {
     /*
         The Button itself.
     */
-    private Button myself;
+    private Button startGameButton;
 
     /*
     To remove the checked if the button is pressed.
@@ -34,9 +35,9 @@ public class StartGameButton implements View.OnClickListener {
      * Creates a button to start and pause the game.
      * @param attackTime the Edittext which shows the attacking time
      */
-    public StartGameButton(EditText attackTime, Button myself, CheckBox editFieldsCheckbox) {
+    public StartStopGameListener(EditText attackTime, Button startGameButton, CheckBox editFieldsCheckbox) {
         this.attackTime = attackTime;
-        this.myself = myself;
+        this.startGameButton = startGameButton;
         this.editFieldsCheckbox = editFieldsCheckbox;
     }
 
@@ -48,27 +49,28 @@ public class StartGameButton implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         editFieldsCheckbox.setChecked(false);
-        if (this.myself.getText().equals("Start")) {
-            this.myself.setText("Stop");
+        if (this.startGameButton.getText().equals("Start")) {
+            this.startGameButton.setText("Stop");
         } else {
-            this.myself.setText("Start");
+            this.startGameButton.setText("Start");
         }
-        if (AttackTimeCountdownTimer.getUniqueInstance() != null) {
 
-            if (AttackTimeCountdownTimer.getUniqueInstance().hasStopped()) {
-                AttackTimeCountdownTimer.createUniqueInstance(24, 1000, attackTime);
+
+        if (ShotClockCountdownTimer.getUniqueInstance() != null) {
+            if (ShotClockCountdownTimer.getUniqueInstance().hasStopped()) {
+                ShotClockCountdownTimer.createUniqueInstance(MainActivity.SHOTCLOCK, 1000, attackTime);
             }
             // Do Nothing, TODO Refactore me.
         } else {
-            AttackTimeCountdownTimer.createUniqueInstance(24, 1000, attackTime);
+            ShotClockCountdownTimer.createUniqueInstance(MainActivity.SHOTCLOCK, 1000, attackTime);
         }
 
         if (GameTimeCountdownTimer.getUniqueInstance().isPaused()) {
             GameTimeCountdownTimer.getUniqueInstance().start();
-            AttackTimeCountdownTimer.getUniqueInstance().start();
+            ShotClockCountdownTimer.getUniqueInstance().start();
         } else {
             GameTimeCountdownTimer.getUniqueInstance().pause();
-            AttackTimeCountdownTimer.getUniqueInstance().pause();
+            ShotClockCountdownTimer.getUniqueInstance().pause();
         }
     }
 

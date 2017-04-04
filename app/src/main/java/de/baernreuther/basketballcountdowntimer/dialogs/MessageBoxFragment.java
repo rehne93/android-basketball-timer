@@ -7,12 +7,13 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 /**
- * Created by René on 03.04.2017.
+ * Created by René Bärnreuther on 03.04.2017.
+ * Shows an message dialog.
  */
 
 public class MessageBoxFragment extends DialogFragment {
 
-    private String message;
+    private String message = "<Not set>";
 
 
     @Override

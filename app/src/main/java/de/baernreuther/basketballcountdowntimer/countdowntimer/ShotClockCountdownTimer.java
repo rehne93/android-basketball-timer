@@ -13,13 +13,13 @@ import de.baernreuther.basketballcountdowntimer.time.TimeConverter;
  * will create a new one if stopped is true.
  */
 
-public class AttackTimeCountdownTimer extends PausableCountDownTimer {
+public class ShotClockCountdownTimer extends PausableCountDownTimer {
 
 
     /*
     We need to only have access to one single instance of this. This instance can be replaced whenever we want, but still only one is allowed to exist.
      */
-    private static AttackTimeCountdownTimer uniqueInstance;
+    private static ShotClockCountdownTimer uniqueInstance;
     /*
     The edittext for the offense time.
      */
@@ -30,20 +30,20 @@ public class AttackTimeCountdownTimer extends PausableCountDownTimer {
     private boolean stopped;
 
 
-    private AttackTimeCountdownTimer(long millisInFuture, long countDownInterval, EditText attackTimeEditText) {
+    private ShotClockCountdownTimer(long millisInFuture, long countDownInterval, EditText attackTimeEditText) {
         super(millisInFuture, countDownInterval);
         this.attackTimeText = attackTimeEditText;
         stopped = false;
     }
 
-    public static AttackTimeCountdownTimer createUniqueInstance(int seconds, long interval, EditText attackTimeText) {
-        uniqueInstance = new AttackTimeCountdownTimer(seconds * 1000, interval, attackTimeText);
+    public static ShotClockCountdownTimer createUniqueInstance(int seconds, long interval, EditText attackTimeText) {
+        uniqueInstance = new ShotClockCountdownTimer(seconds * 1000, interval, attackTimeText);
         return uniqueInstance;
     }
 
-    public static AttackTimeCountdownTimer getUniqueInstance() {
+    public static ShotClockCountdownTimer getUniqueInstance() {
         if (uniqueInstance == null) {
-            throw new NullPointerException("Trying to get a AttackTimeCountdownTimer uninitialized.");
+            throw new NullPointerException("Trying to get a ShotClockCountdownTimer uninitialized.");
         }
         return uniqueInstance;
     }

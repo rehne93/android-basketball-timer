@@ -3,24 +3,25 @@ package de.baernreuther.basketballcountdowntimer.listener.buttons;
 import android.view.View;
 import android.widget.EditText;
 
-import de.baernreuther.basketballcountdowntimer.countdowntimer.AttackTimeCountdownTimer;
 import de.baernreuther.basketballcountdowntimer.countdowntimer.GameTimeCountdownTimer;
+import de.baernreuther.basketballcountdowntimer.countdowntimer.ShotClockCountdownTimer;
 
 /**
- * Created by René on 02.04.2017.
+ * Created by René Bärnreuther on 02.04.2017.
+ * Restarts the Shotclock
  */
 
-public class RefreshAttackTimeButton implements View.OnClickListener {
+public class RefreshShotClockListener implements View.OnClickListener {
 
     private EditText attackTime;
     private int timeLeft;
     /**
-     * Creates a RefreshAttackTimeButton who is able to refresh the attack time to a certain amount of time.
+     * Creates a RefreshShotClockListener who is able to refresh the attack time to a certain amount of time.
      *
      * @param attackTime               the edittext with the current attack time
      * @param timeLeft                 the time left in this attack.
      */
-    public RefreshAttackTimeButton(EditText attackTime, int timeLeft) {
+    public RefreshShotClockListener(EditText attackTime, int timeLeft) {
         this.attackTime = attackTime;
         this.timeLeft = timeLeft;
     }
@@ -30,11 +31,11 @@ public class RefreshAttackTimeButton implements View.OnClickListener {
      */
     @Override
     public void onClick(View v) {
-        AttackTimeCountdownTimer.getUniqueInstance().cancel();
-        AttackTimeCountdownTimer.createUniqueInstance(timeLeft, 1000, attackTime);
+        ShotClockCountdownTimer.getUniqueInstance().cancel();
+        ShotClockCountdownTimer.createUniqueInstance(timeLeft, 1000, attackTime);
         attackTime.setText(String.valueOf(timeLeft));
         if (!GameTimeCountdownTimer.getUniqueInstance().isPaused()) {
-            AttackTimeCountdownTimer.getUniqueInstance().start();
+            ShotClockCountdownTimer.getUniqueInstance().start();
         }
 
     }

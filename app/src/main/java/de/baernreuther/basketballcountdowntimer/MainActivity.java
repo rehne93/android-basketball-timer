@@ -9,25 +9,33 @@ import android.widget.EditText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.baernreuther.basketballcountdowntimer.countdowntimer.AttackTimeCountdownTimer;
 import de.baernreuther.basketballcountdowntimer.countdowntimer.GameTimeCountdownTimer;
-import de.baernreuther.basketballcountdowntimer.listener.buttons.HelpButton;
-import de.baernreuther.basketballcountdowntimer.listener.buttons.RefreshAttackTimeButton;
-import de.baernreuther.basketballcountdowntimer.listener.buttons.StartGameButton;
+import de.baernreuther.basketballcountdowntimer.countdowntimer.ShotClockCountdownTimer;
+import de.baernreuther.basketballcountdowntimer.listener.buttons.HelpListener;
+import de.baernreuther.basketballcountdowntimer.listener.buttons.RefreshShotClockListener;
+import de.baernreuther.basketballcountdowntimer.listener.buttons.StartStopGameListener;
 import de.baernreuther.basketballcountdowntimer.listener.editboxes.AttackTimeEditText;
 import de.baernreuther.basketballcountdowntimer.listener.editboxes.GameTimeEditText;
 
+
+/**
+ * Implements the basic start actitigy showing the Basketball Countdown Timer for a Quarter.
+ */
 public class MainActivity extends AppCompatActivity {
 
 
+    public static final int SHOTCLOCK = 24;
+    public static final int SHORTCLOCK_REBOUND = 14;
+    public static final int GAMETIME = 600;
+
     @BindView(R.id.startGameButton)
-    Button startGameButton;
+    Button startPauseGameTimeButton;
 
     @BindView(R.id.refreshAttackTime)
-    Button refreshAttackTimeButton;
+    Button newShotClockButton;
 
     @BindView(R.id.offensiveReboundButton)
-    Button offensiveReboundButton;
+    Button newOffenseShotClockButton;
 
     @BindView(R.id.helpButton)
     Button helpButton;
@@ -38,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.secondsLeft)
     EditText secondsLeft;
 
-    @BindView(R.id.attackTime)
-    EditText attackTime;
+    @BindView(R.id.shotClock)
+    EditText shotClock;
 
     @BindView(R.id.editFieldsCheckbox)
     CheckBox editFieldsCheckbox;
@@ -51,14 +59,14 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initializeTimers();
-        initializeFields();
+        enableFields();
         initializeListeners();
         editFieldsCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 /* Only allow to change fields when game is paused */
                 if (GameTimeCountdownTimer.getUniqueInstance().isPaused()) {
-                    initializeFields();
+                    enableFields();
                 } else {
                     editFieldsCheckbox.setChecked(false);
 
@@ -74,15 +82,15 @@ public class MainActivity extends AppCompatActivity {
     Initialize the timers with the default values 600seconsd (10:00 minutes) game time and 24 seconds for the shotclock
      */
     private void initializeTimers() {
-        GameTimeCountdownTimer.createUniqueInstance(600, 1000, minutesLeft, secondsLeft);
-        AttackTimeCountdownTimer.createUniqueInstance(24, 1000, attackTime);
+        GameTimeCountdownTimer.createUniqueInstance(GAMETIME, 1000, minutesLeft, secondsLeft);
+        ShotClockCountdownTimer.createUniqueInstance(SHOTCLOCK, 1000, shotClock);
     }
     /*
-        Initializes all the fields.
+        Enables or disables all fields.
      */
-    private void initializeFields(){
+    private void enableFields() {
 
-        attackTime.setEnabled(!attackTime.isEnabled());
+        shotClock.setEnabled(!shotClock.isEnabled());
         minutesLeft.setEnabled(!minutesLeft.isEnabled());
         secondsLeft.setEnabled(!secondsLeft.isEnabled());
     }
@@ -91,12 +99,12 @@ public class MainActivity extends AppCompatActivity {
     Initializes all listeners.
      */
     private void initializeListeners() {
-        refreshAttackTimeButton.setOnClickListener(new RefreshAttackTimeButton(attackTime, 24));
-        offensiveReboundButton.setOnClickListener(new RefreshAttackTimeButton(attackTime, 14));
-        startGameButton.setOnClickListener(new StartGameButton(attackTime, startGameButton, editFieldsCheckbox));
-        helpButton.setOnClickListener(new HelpButton(this));
+        newShotClockButton.setOnClickListener(new RefreshShotClockListener(shotClock, SHOTCLOCK));
+        newOffenseShotClockButton.setOnClickListener(new RefreshShotClockListener(shotClock, SHORTCLOCK_REBOUND));
+        startPauseGameTimeButton.setOnClickListener(new StartStopGameListener(shotClock, startPauseGameTimeButton, editFieldsCheckbox));
+        helpButton.setOnClickListener(new HelpListener(this));
 
-        attackTime.addTextChangedListener(new AttackTimeEditText(editFieldsCheckbox, attackTime, this));
+        shotClock.addTextChangedListener(new AttackTimeEditText(editFieldsCheckbox, shotClock, this));
         minutesLeft.addTextChangedListener(new GameTimeEditText(editFieldsCheckbox, minutesLeft, secondsLeft));
         secondsLeft.addTextChangedListener(new GameTimeEditText(editFieldsCheckbox, minutesLeft, secondsLeft));
     }

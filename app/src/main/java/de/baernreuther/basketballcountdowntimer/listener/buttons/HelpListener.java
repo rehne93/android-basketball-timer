@@ -10,11 +10,11 @@ import de.baernreuther.basketballcountdowntimer.dialogs.MessageBoxFragment;
  * Shows an help dialog.
  */
 
-public class HelpButton implements View.OnClickListener {
+public class HelpListener implements View.OnClickListener {
 
     private MainActivity context;
 
-    public HelpButton(MainActivity mainActivity) {
+    public HelpListener(MainActivity mainActivity) {
         this.context = mainActivity;
     }
 

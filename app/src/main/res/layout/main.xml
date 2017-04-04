@@ -21,7 +21,7 @@
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <EditText
-        android:id="@+id/attackTime"
+        android:id="@+id/shotClock"
         android:layout_width="105dp"
         android:layout_height="44dp"
         android:layout_marginTop="66dp"
@@ -31,7 +31,7 @@
         android:inputType="number"
         android:text="24"
         android:textColor="@drawable/attack_edittext"
-        android:textSize="45sp"
+        android:textSize="42sp"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -139,7 +139,7 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/attackTime" />
+        app:layout_constraintTop_toBottomOf="@+id/shotClock" />
 
     <Button
         android:id="@+id/helpButton"
