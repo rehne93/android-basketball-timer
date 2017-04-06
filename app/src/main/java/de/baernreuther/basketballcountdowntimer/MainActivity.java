@@ -1,11 +1,13 @@
 package de.baernreuther.basketballcountdowntimer;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,7 +21,7 @@ import de.baernreuther.basketballcountdowntimer.listener.editboxes.GameTimeEditT
 
 
 /**
- * Implements the basic start actitigy showing the Basketball Countdown Timer for a Quarter.
+ * Implements the basic start activity showing the Basketball Countdown Timer for a Quarter.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -52,11 +54,13 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.editFieldsCheckbox)
     CheckBox editFieldsCheckbox;
 
+    private Context myContext;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         ButterKnife.bind(this);
+        myContext = this.getBaseContext();
 
         initializeTimers();
         enableFields();
@@ -68,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 if (GameTimeCountdownTimer.getUniqueInstance().isPaused()) {
                     enableFields();
                 } else {
+                    Toast.makeText(myContext, "You cannot change times when the game is running.", Toast.LENGTH_LONG).show();
                     editFieldsCheckbox.setChecked(false);
 
                 }
