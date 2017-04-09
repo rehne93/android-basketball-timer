@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="normal_color">#F7FE2E</color>
     <color name="disabled_color">#000000</color>
+    <color name="game_not_running">#D0F5A9</color>
+    <color name="game_running">#F5BCA9</color>
 </resources>

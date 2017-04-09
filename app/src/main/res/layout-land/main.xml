@@ -66,6 +66,7 @@
         android:layout_marginBottom="21dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:background="@color/game_not_running"
         android:text="Start"
         app:layout_constraintBottom_toTopOf="@+id/editFieldsCheckbox"
         app:layout_constraintRight_toRightOf="parent" />

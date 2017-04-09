@@ -15,16 +15,22 @@ import de.baernreuther.basketballcountdowntimer.time.TimeConverter;
 public class GameTimeCountdownTimer extends PausableCountDownTimer {
 
 
-    // TODO Think about how to remove redundancy
 
     /*
        We need to only have access to one single instance of this. This instance can be replaced whenever we want, but still only one is allowed to exist.
    */
     private static GameTimeCountdownTimer uniqueInstance = null;
-
+    /*
+    The minutes left in the game
+     */
     private EditText minutesLeft;
-    private EditText secondsLeft;
 
+
+    // TODO Think about how to remove redundancy with shotClockCountdownTimer
+    /*
+    The seconds left in the game
+     */
+    private EditText secondsLeft;
 
     private GameTimeCountdownTimer(long millisInFuture, long countDownInterval, EditText minutesLeft, EditText secondsLeft) {
         super(millisInFuture, countDownInterval);
@@ -39,7 +45,7 @@ public class GameTimeCountdownTimer extends PausableCountDownTimer {
      */
     public static GameTimeCountdownTimer getUniqueInstance() {
         if (uniqueInstance == null) {
-            throw new NullPointerException("Trying to get a GameTimCountdownTimer uninitialized.");
+            throw new NullPointerException("Trying to get a uninitialized GameTimCountdownTimer .");
         }
         return uniqueInstance;
     }
@@ -74,7 +80,7 @@ public class GameTimeCountdownTimer extends PausableCountDownTimer {
 
     @Override
     public void onFinish() {
-        minutesLeft.setText("0");
-        secondsLeft.setText("0");
+        minutesLeft.setText("00");
+        secondsLeft.setText("00");
     }
 }

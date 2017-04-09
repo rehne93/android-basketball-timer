@@ -1,8 +1,10 @@
 package de.baernreuther.basketballcountdowntimer.countdowntimer;
 
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import de.baernreuther.basketballcountdowntimer.R;
 import de.baernreuther.basketballcountdowntimer.time.TimeConverter;
 
 /**
@@ -28,22 +30,32 @@ public class ShotClockCountdownTimer extends PausableCountDownTimer {
       If the timer has stopped or not.
      */
     private boolean stopped;
+    /*
 
+     */
+    private Button startGameButton;
 
-    private ShotClockCountdownTimer(long millisInFuture, long countDownInterval, EditText attackTimeEditText) {
+    private ShotClockCountdownTimer(long millisInFuture, long countDownInterval, EditText attackTimeEditText, Button startGameButton) {
         super(millisInFuture, countDownInterval);
         this.attackTimeText = attackTimeEditText;
         stopped = false;
+        this.startGameButton = startGameButton;
     }
 
-    public static ShotClockCountdownTimer createUniqueInstance(int seconds, long interval, EditText attackTimeText) {
-        uniqueInstance = new ShotClockCountdownTimer(seconds * 1000, interval, attackTimeText);
+    /*
+    Creates a unique Shotclock Countdowntimer. If there is already one, it will be overwritten.
+     */
+    public static ShotClockCountdownTimer createUniqueInstance(int seconds, long interval, EditText attackTimeText, Button startGameButton) {
+        uniqueInstance = new ShotClockCountdownTimer(seconds * 1000, interval, attackTimeText, startGameButton);
         return uniqueInstance;
     }
 
+    /*
+    Returns the only existing instance of shotclockcountdown.
+     */
     public static ShotClockCountdownTimer getUniqueInstance() {
         if (uniqueInstance == null) {
-            throw new NullPointerException("Trying to get a ShotClockCountdownTimer uninitialized.");
+            throw new NullPointerException("Trying to get a  uninitialized ShotClockCountdownTimer .");
         }
         return uniqueInstance;
     }
@@ -64,6 +76,11 @@ public class ShotClockCountdownTimer extends PausableCountDownTimer {
     public void onFinish() {
         attackTimeText.setText(String.valueOf(0));
         this.stopped = true;
+        if (startGameButton != null) {
+            startGameButton.setText("Start");
+            startGameButton.setBackgroundResource(R.color.game_not_running);
+        }
+
         GameTimeCountdownTimer.getUniqueInstance().pause();
     }
 

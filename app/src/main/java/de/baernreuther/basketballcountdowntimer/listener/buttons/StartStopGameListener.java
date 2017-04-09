@@ -6,6 +6,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import de.baernreuther.basketballcountdowntimer.MainActivity;
+import de.baernreuther.basketballcountdowntimer.R;
 import de.baernreuther.basketballcountdowntimer.countdowntimer.GameTimeCountdownTimer;
 import de.baernreuther.basketballcountdowntimer.countdowntimer.ShotClockCountdownTimer;
 
@@ -51,18 +52,22 @@ public class StartStopGameListener implements View.OnClickListener {
         editFieldsCheckbox.setChecked(false);
         if (this.startGameButton.getText().equals("Start")) {
             this.startGameButton.setText("Stop");
+            this.startGameButton.setBackgroundResource(R.color.game_running);
+
         } else {
             this.startGameButton.setText("Start");
+            this.startGameButton.setBackgroundResource(R.color.game_not_running);
+
         }
 
 
         if (ShotClockCountdownTimer.getUniqueInstance() != null) {
             if (ShotClockCountdownTimer.getUniqueInstance().hasStopped()) {
-                ShotClockCountdownTimer.createUniqueInstance(MainActivity.SHOTCLOCK, 1000, attackTime);
+                ShotClockCountdownTimer.createUniqueInstance(MainActivity.SHOTCLOCK, 1000, attackTime, startGameButton);
             }
-            // Do Nothing, TODO Refactore me.
+            // TODO Refactor me.
         } else {
-            ShotClockCountdownTimer.createUniqueInstance(MainActivity.SHOTCLOCK, 1000, attackTime);
+            ShotClockCountdownTimer.createUniqueInstance(MainActivity.SHOTCLOCK, 1000, attackTime, startGameButton);
         }
 
         if (GameTimeCountdownTimer.getUniqueInstance().isPaused()) {

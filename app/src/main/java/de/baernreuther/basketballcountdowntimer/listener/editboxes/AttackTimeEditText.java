@@ -62,7 +62,7 @@ public class AttackTimeEditText implements TextWatcher {
                 messageBoxFragment.show(mainActivity.getFragmentManager(), "Invalid shot clock time");
                 return;
             }
-            ShotClockCountdownTimer.createUniqueInstance(Integer.valueOf(time), 1000, attackTime);
+            ShotClockCountdownTimer.createUniqueInstance(Integer.valueOf(time), 1000, attackTime, mainActivity.getStartPauseGameTimeButton());
 
         }
     }

@@ -22,6 +22,7 @@ import de.baernreuther.basketballcountdowntimer.listener.editboxes.GameTimeEditT
 
 /**
  * Implements the basic start activity showing the Basketball Countdown Timer for a Quarter.
+ * TODO Make StartStopButton change when shotclock is over
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         initializeTimers();
         enableFields();
         initializeListeners();
+
+        // TODO make me my own listener
         editFieldsCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -88,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void initializeTimers() {
         GameTimeCountdownTimer.createUniqueInstance(GAMETIME, 1000, minutesLeft, secondsLeft);
-        ShotClockCountdownTimer.createUniqueInstance(SHOTCLOCK, 1000, shotClock);
+        ShotClockCountdownTimer.createUniqueInstance(SHOTCLOCK, 1000, shotClock, startPauseGameTimeButton);
     }
     /*
         Enables or disables all fields.
@@ -104,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
     Initializes all listeners.
      */
     private void initializeListeners() {
-        newShotClockButton.setOnClickListener(new RefreshShotClockListener(shotClock, SHOTCLOCK));
-        newOffenseShotClockButton.setOnClickListener(new RefreshShotClockListener(shotClock, SHORTCLOCK_REBOUND));
+        newShotClockButton.setOnClickListener(new RefreshShotClockListener(shotClock, SHOTCLOCK, startPauseGameTimeButton));
+        newOffenseShotClockButton.setOnClickListener(new RefreshShotClockListener(shotClock, SHORTCLOCK_REBOUND, startPauseGameTimeButton));
         startPauseGameTimeButton.setOnClickListener(new StartStopGameListener(shotClock, startPauseGameTimeButton, editFieldsCheckbox));
         helpButton.setOnClickListener(new HelpListener(this));
 
@@ -114,5 +117,8 @@ public class MainActivity extends AppCompatActivity {
         secondsLeft.addTextChangedListener(new GameTimeEditText(editFieldsCheckbox, minutesLeft, secondsLeft));
     }
 
+    public Button getStartPauseGameTimeButton() {
+        return this.startPauseGameTimeButton;
+    }
 
 }
