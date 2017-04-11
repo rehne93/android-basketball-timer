@@ -4,6 +4,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import de.baernreuther.basketballcountdowntimer.MainActivity;
 import de.baernreuther.basketballcountdowntimer.R;
 import de.baernreuther.basketballcountdowntimer.time.TimeConverter;
 
@@ -31,21 +32,25 @@ public class ShotClockCountdownTimer extends PausableCountDownTimer {
      */
     private boolean stopped;
     /*
-
+       The Button to start and stop the game
      */
     private Button startGameButton;
+
 
     private ShotClockCountdownTimer(long millisInFuture, long countDownInterval, EditText attackTimeEditText, Button startGameButton) {
         super(millisInFuture, countDownInterval);
         this.attackTimeText = attackTimeEditText;
-        stopped = false;
         this.startGameButton = startGameButton;
+        stopped = false;
+
     }
 
     /*
     Creates a unique Shotclock Countdowntimer. If there is already one, it will be overwritten.
      */
     public static ShotClockCountdownTimer createUniqueInstance(int seconds, long interval, EditText attackTimeText, Button startGameButton) {
+        if (uniqueInstance != null)
+            uniqueInstance = null;
         uniqueInstance = new ShotClockCountdownTimer(seconds * 1000, interval, attackTimeText, startGameButton);
         return uniqueInstance;
     }
@@ -62,16 +67,20 @@ public class ShotClockCountdownTimer extends PausableCountDownTimer {
 
     /**
      * Called every tick and sets new time left.
+     * Shows an "-" in case the shotclock isn't necessary anymore.
      * @param millisUntilFinished The amount of time until finished.
      */
     @Override
     public void onTick(long millisUntilFinished) {
+        if (GameTimeCountdownTimer.getUniqueInstance().getSecondsLeft() < Integer.valueOf(TimeConverter.getAttackTimeLeft(millisUntilFinished))) {
+            attackTimeText.setText("-", TextView.BufferType.EDITABLE);
+        } else {
             attackTimeText.setText(TimeConverter.getAttackTimeLeft(millisUntilFinished), TextView.BufferType.EDITABLE);
+        }
+
     }
 
-    /**
-     * TODO Implement a sound that shows the attack time is over
-     */
+
     @Override
     public void onFinish() {
         attackTimeText.setText(String.valueOf(0));
@@ -80,6 +89,7 @@ public class ShotClockCountdownTimer extends PausableCountDownTimer {
             startGameButton.setText("Start");
             startGameButton.setBackgroundResource(R.color.game_not_running);
         }
+        MainActivity.getMediaPlayerInstance().start();
 
         GameTimeCountdownTimer.getUniqueInstance().pause();
     }

@@ -73,11 +73,11 @@
 
     <EditText
         android:id="@+id/minutesLeft"
-        android:layout_width="145dp"
+        android:layout_width="100dp"
         android:layout_height="75dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginStart="3dp"
+        android:layout_marginLeft="176dp"
+        android:layout_marginStart="148dp"
         android:layout_marginTop="16dp"
         android:background="@null"
         android:ems="14"
@@ -91,10 +91,10 @@
 
     <EditText
         android:id="@+id/secondsLeft"
-        android:layout_width="145dp"
+        android:layout_width="100dp"
         android:layout_height="75dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="78dp"
+        android:layout_marginEnd="129dp"
+        android:layout_marginRight="174dp"
         android:layout_marginTop="16dp"
         android:background="@null"
         android:ems="14"
@@ -110,13 +110,10 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
 
-        android:layout_marginRight="8dp"
         android:layout_marginTop="26dp"
         android:text=":"
         android:textSize="45sp"
-        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintLeft_toRightOf="@+id/minutesLeft"
         app:layout_constraintRight_toLeftOf="@+id/secondsLeft"
         app:layout_constraintTop_toTopOf="parent" />
@@ -125,7 +122,6 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
         android:text="Game time"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -136,7 +132,6 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-94dp"
         android:text="Shot clock"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -145,32 +140,44 @@
 
     <Button
         android:id="@+id/helpButton"
-        android:layout_width="37dp"
-        android:layout_height="35dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="277dp"
+        android:layout_marginRight="277dp"
+        android:layout_marginTop="236dp"
         android:text="\?"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/addSeconds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="74dp"
-        android:text="Minutes"
-        app:layout_constraintLeft_toRightOf="@+id/minutesLeft"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="219dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="219dp"
+        android:layout_marginTop="145dp"
+        android:clickable="true"
+        android:text="+"
+        android:textSize="25sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/shotClock"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/removeSeconds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="81dp"
-        android:layout_marginTop="74dp"
-        android:text="Seconds"
-        app:layout_constraintLeft_toLeftOf="@+id/secondsLeft"
+        android:layout_marginEnd="222dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="222dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="145dp"
+        android:clickable="true"
+        android:text="-"
+        android:textSize="25sp"
+        app:layout_constraintLeft_toRightOf="@+id/shotClock"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

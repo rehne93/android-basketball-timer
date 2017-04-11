@@ -32,6 +32,7 @@ public class StartStopGameListener implements View.OnClickListener {
      */
     private CheckBox editFieldsCheckbox;
 
+
     /**
      * Creates a button to start and pause the game.
      * @param attackTime the Edittext which shows the attacking time
@@ -53,19 +54,15 @@ public class StartStopGameListener implements View.OnClickListener {
         if (this.startGameButton.getText().equals("Start")) {
             this.startGameButton.setText("Stop");
             this.startGameButton.setBackgroundResource(R.color.game_running);
-
         } else {
             this.startGameButton.setText("Start");
             this.startGameButton.setBackgroundResource(R.color.game_not_running);
-
         }
-
 
         if (ShotClockCountdownTimer.getUniqueInstance() != null) {
             if (ShotClockCountdownTimer.getUniqueInstance().hasStopped()) {
                 ShotClockCountdownTimer.createUniqueInstance(MainActivity.SHOTCLOCK, 1000, attackTime, startGameButton);
             }
-            // TODO Refactor me.
         } else {
             ShotClockCountdownTimer.createUniqueInstance(MainActivity.SHOTCLOCK, 1000, attackTime, startGameButton);
         }

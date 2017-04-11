@@ -60,6 +60,7 @@ public class AttackTimeEditText implements TextWatcher {
                 MessageBoxFragment messageBoxFragment = new MessageBoxFragment();
                 messageBoxFragment.setMessage("You cannot set a shot clock time larger than 30 seconds or smaller than zero.");
                 messageBoxFragment.show(mainActivity.getFragmentManager(), "Invalid shot clock time");
+                attackTime.setText("0");
                 return;
             }
             ShotClockCountdownTimer.createUniqueInstance(Integer.valueOf(time), 1000, attackTime, mainActivity.getStartPauseGameTimeButton());

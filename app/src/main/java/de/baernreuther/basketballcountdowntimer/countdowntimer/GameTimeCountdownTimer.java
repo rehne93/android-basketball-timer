@@ -4,6 +4,7 @@ import android.widget.EditText;
 
 import java.util.UnknownFormatConversionException;
 
+import de.baernreuther.basketballcountdowntimer.MainActivity;
 import de.baernreuther.basketballcountdowntimer.time.TimeConverter;
 
 /**
@@ -15,7 +16,6 @@ import de.baernreuther.basketballcountdowntimer.time.TimeConverter;
 public class GameTimeCountdownTimer extends PausableCountDownTimer {
 
 
-
     /*
        We need to only have access to one single instance of this. This instance can be replaced whenever we want, but still only one is allowed to exist.
    */
@@ -24,14 +24,10 @@ public class GameTimeCountdownTimer extends PausableCountDownTimer {
     The minutes left in the game
      */
     private EditText minutesLeft;
-
-
-    // TODO Think about how to remove redundancy with shotClockCountdownTimer
     /*
     The seconds left in the game
      */
     private EditText secondsLeft;
-
     private GameTimeCountdownTimer(long millisInFuture, long countDownInterval, EditText minutesLeft, EditText secondsLeft) {
         super(millisInFuture, countDownInterval);
         this.minutesLeft = minutesLeft;
@@ -58,6 +54,9 @@ public class GameTimeCountdownTimer extends PausableCountDownTimer {
      * @return the instance created.
      */
     public static GameTimeCountdownTimer createUniqueInstance(int seconds, long interval, EditText minutesLeft, EditText secondsLeft) {
+        if (uniqueInstance != null)
+            uniqueInstance = null;
+
         uniqueInstance = new GameTimeCountdownTimer(seconds * 1000, interval, minutesLeft, secondsLeft);
         return uniqueInstance;
     }
@@ -77,10 +76,18 @@ public class GameTimeCountdownTimer extends PausableCountDownTimer {
         secondsLeft.setText(minutesAndSeconds[1]);
     }
 
-
+    /*
+    Sets everything to zero when the time is over
+     */
     @Override
     public void onFinish() {
+        MainActivity.getMediaPlayerInstance().start();
+
         minutesLeft.setText("00");
         secondsLeft.setText("00");
+    }
+
+    public int getSecondsLeft() {
+        return Integer.valueOf(secondsLeft.getText().toString());
     }
 }
