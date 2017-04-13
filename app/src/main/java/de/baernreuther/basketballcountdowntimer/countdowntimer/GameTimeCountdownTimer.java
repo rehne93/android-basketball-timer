@@ -90,4 +90,8 @@ public class GameTimeCountdownTimer extends PausableCountDownTimer {
     public int getSecondsLeft() {
         return Integer.valueOf(secondsLeft.getText().toString());
     }
+
+    public int getTimeInSecondsLeft() {
+        return Integer.valueOf(secondsLeft.getText().toString()) + 60 * Integer.valueOf(minutesLeft.getText().toString());
+    }
 }

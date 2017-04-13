@@ -71,7 +71,7 @@ public class ShotClockCountdownTimer extends PausableCountDownTimer {
      */
     @Override
     public void onTick(long millisUntilFinished) {
-        if (GameTimeCountdownTimer.getUniqueInstance().getSecondsLeft() < Integer.valueOf(TimeConverter.getAttackTimeLeft(millisUntilFinished))) {
+        if (GameTimeCountdownTimer.getUniqueInstance().getTimeInSecondsLeft() < Integer.valueOf(TimeConverter.getAttackTimeLeft(millisUntilFinished))) {
             attackTimeText.setText("-", TextView.BufferType.EDITABLE);
         } else {
             attackTimeText.setText(TimeConverter.getAttackTimeLeft(millisUntilFinished), TextView.BufferType.EDITABLE);
