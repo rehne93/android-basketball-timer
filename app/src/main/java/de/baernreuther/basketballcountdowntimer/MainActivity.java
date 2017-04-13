@@ -12,7 +12,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.baernreuther.basketballcountdowntimer.countdowntimer.GameTimeCountdownTimer;
 import de.baernreuther.basketballcountdowntimer.countdowntimer.ShotClockCountdownTimer;
-import de.baernreuther.basketballcountdowntimer.enums.ADD_SECOND;
+import de.baernreuther.basketballcountdowntimer.enums.ADD_OR_REMOVE;
+import de.baernreuther.basketballcountdowntimer.listener.buttons.AddOrRemovePointsListener;
 import de.baernreuther.basketballcountdowntimer.listener.buttons.HelpListener;
 import de.baernreuther.basketballcountdowntimer.listener.buttons.RefreshShotClockListener;
 import de.baernreuther.basketballcountdowntimer.listener.buttons.StartStopGameListener;
@@ -45,26 +46,54 @@ public class MainActivity extends AppCompatActivity {
     Media Player to play the game finish sounds.
      */
     private static MediaPlayer mediaPlayer;
+
     @BindView(R.id.startGameButton)
     Button startPauseGameTimeButton;
+
     @BindView(R.id.refreshAttackTime)
     Button newShotClockButton;
+
     @BindView(R.id.offensiveReboundButton)
     Button newOffenseShotClockButton;
+
     @BindView(R.id.helpButton)
     Button helpButton;
+
     @BindView(R.id.minutesLeft)
     EditText minutesLeft;
+
     @BindView(R.id.secondsLeft)
     EditText secondsLeft;
+
     @BindView(R.id.shotClock)
     EditText shotClock;
+
     @BindView(R.id.editFieldsCheckbox)
     CheckBox editFieldsCheckbox;
+
     @BindView(R.id.addSeconds)
     TextView addShotClockSecondTextView;
+
     @BindView(R.id.removeSeconds)
     TextView removeShotClockSecondTextView;
+
+    @BindView(R.id.addHomePoints)
+    TextView addHomePointsButton;
+
+    @BindView(R.id.removeHomePoints)
+    TextView removeHomePointsButton;
+
+    @BindView(R.id.addGuestPoints)
+    TextView addGuestPointsButton;
+
+    @BindView(R.id.removeGuestPoints)
+    TextView removeGuestPointsButton;
+
+    @BindView(R.id.homeResult)
+    TextView homeResultTextView;
+
+    @BindView(R.id.guestResult)
+    TextView guestResultTextView;
 
     /*
     Returns a media player if it exists.
@@ -122,14 +151,20 @@ public class MainActivity extends AppCompatActivity {
         startPauseGameTimeButton.setOnClickListener(new StartStopGameListener(shotClock, startPauseGameTimeButton, editFieldsCheckbox));
         helpButton.setOnClickListener(new HelpListener(this));
 
+        addGuestPointsButton.setOnClickListener(new AddOrRemovePointsListener(guestResultTextView, ADD_OR_REMOVE.ADD, startPauseGameTimeButton));
+        addHomePointsButton.setOnClickListener(new AddOrRemovePointsListener(homeResultTextView, ADD_OR_REMOVE.ADD, startPauseGameTimeButton));
+        removeGuestPointsButton.setOnClickListener(new AddOrRemovePointsListener(guestResultTextView, ADD_OR_REMOVE.REMOVE, startPauseGameTimeButton));
+        removeHomePointsButton.setOnClickListener(new AddOrRemovePointsListener(homeResultTextView, ADD_OR_REMOVE.REMOVE, startPauseGameTimeButton));
+
+
         shotClock.addTextChangedListener(new AttackTimeEditText(editFieldsCheckbox, shotClock, this));
         minutesLeft.addTextChangedListener(new GameTimeEditText(editFieldsCheckbox, minutesLeft, secondsLeft));
         secondsLeft.addTextChangedListener(new GameTimeEditText(editFieldsCheckbox, minutesLeft, secondsLeft));
 
         editFieldsCheckbox.setOnCheckedChangeListener(new ChangeValuesCheckBox(this, editFieldsCheckbox));
 
-        addShotClockSecondTextView.setOnClickListener(new AddOrRemoveShotclockTime(shotClock, ADD_SECOND.ADD_MINUTE, startPauseGameTimeButton));
-        removeShotClockSecondTextView.setOnClickListener(new AddOrRemoveShotclockTime(shotClock, ADD_SECOND.REMOVE_MINUTE, startPauseGameTimeButton));
+        addShotClockSecondTextView.setOnClickListener(new AddOrRemoveShotclockTime(shotClock, ADD_OR_REMOVE.ADD, startPauseGameTimeButton));
+        removeShotClockSecondTextView.setOnClickListener(new AddOrRemoveShotclockTime(shotClock, ADD_OR_REMOVE.REMOVE, startPauseGameTimeButton));
     }
 
 

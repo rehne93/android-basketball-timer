@@ -7,7 +7,7 @@ import android.widget.EditText;
 
 import de.baernreuther.basketballcountdowntimer.countdowntimer.GameTimeCountdownTimer;
 import de.baernreuther.basketballcountdowntimer.countdowntimer.ShotClockCountdownTimer;
-import de.baernreuther.basketballcountdowntimer.enums.ADD_SECOND;
+import de.baernreuther.basketballcountdowntimer.enums.ADD_OR_REMOVE;
 
 /**
  * Created by René Bärnreuther on 10.04.2017.
@@ -30,10 +30,10 @@ public class AddOrRemoveShotclockTime implements View.OnClickListener {
     /*
     Tells me, if we have to add or remove a second.
      */
-    private ADD_SECOND whatToDo;
+    private ADD_OR_REMOVE whatToDo;
 
 
-    public AddOrRemoveShotclockTime(EditText shotClock, ADD_SECOND whatToDo, Button startGameButton) {
+    public AddOrRemoveShotclockTime(EditText shotClock, ADD_OR_REMOVE whatToDo, Button startGameButton) {
         this.shotClock = shotClock;
         this.startGameButton = startGameButton;
         this.whatToDo = whatToDo;
@@ -43,14 +43,14 @@ public class AddOrRemoveShotclockTime implements View.OnClickListener {
     Changes the time on the shotclock.
      */
     private void changeTime() {
-        if (whatToDo == ADD_SECOND.ADD_MINUTE) {
+        if (whatToDo == ADD_OR_REMOVE.ADD) {
             int time = Integer.valueOf(shotClock.getText().toString());
             time++;
             if (time > 30)
                 time = 30;
             shotClock.setText(String.valueOf(time));
             createNewShotClockInstance(time);
-        } else if (whatToDo == ADD_SECOND.REMOVE_MINUTE) {
+        } else if (whatToDo == ADD_OR_REMOVE.REMOVE) {
             int time = Integer.valueOf(shotClock.getText().toString());
             time--;
             if (time < 1)
