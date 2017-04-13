@@ -5,7 +5,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import de.baernreuther.basketballcountdowntimer.MainActivity;
-import de.baernreuther.basketballcountdowntimer.R;
 import de.baernreuther.basketballcountdowntimer.time.TimeConverter;
 
 /**
@@ -87,7 +86,6 @@ public class ShotClockCountdownTimer extends PausableCountDownTimer {
         this.stopped = true;
         if (startGameButton != null) {
             startGameButton.setText("Start");
-            startGameButton.setBackgroundResource(R.color.game_not_running);
         }
         MainActivity.getMediaPlayerInstance().start();
 

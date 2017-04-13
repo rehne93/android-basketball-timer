@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import de.baernreuther.basketballcountdowntimer.R;
 import de.baernreuther.basketballcountdowntimer.countdowntimer.GameTimeCountdownTimer;
 import de.baernreuther.basketballcountdowntimer.countdowntimer.ShotClockCountdownTimer;
 import de.baernreuther.basketballcountdowntimer.enums.ADD_OR_REMOVE;
@@ -62,7 +61,6 @@ public class AddOrRemovePointsListener implements View.OnClickListener {
 
         if (startGameButton != null) {
             startGameButton.setText("Start");
-            startGameButton.setBackgroundResource(R.color.game_not_running);
         }
 
 

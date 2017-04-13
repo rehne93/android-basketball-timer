@@ -9,66 +9,80 @@
     tools:layout_editor_absoluteY="81dp">
 
 
-    <Button
+    <TextView
         android:id="@+id/refreshAttackTime"
-        android:layout_width="132dp"
-        android:layout_height="73dp"
-        android:layout_marginBottom="100dp"
+        android:layout_width="113dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="74dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
-        android:text="New 24s"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="24s"
+        android:textAlignment="center"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintHorizontal_bias="0.809"
+        app:layout_constraintLeft_toRightOf="@+id/startGameButton"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <EditText
         android:id="@+id/shotClock"
         android:layout_width="105dp"
         android:layout_height="44dp"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="63dp"
         android:background="@null"
+        android:clickable="true"
         android:ems="10"
         android:gravity="center"
         android:inputType="number"
         android:text="24"
-        android:textColor="@drawable/attack_edittext"
+        android:textColor="@color/full_red"
         android:textSize="42sp"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/doublePoint" />
 
-    <Button
+    <TextView
         android:id="@+id/offensiveReboundButton"
-        android:layout_width="131dp"
-        android:layout_height="71dp"
+        android:layout_width="113dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="74dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="13dp"
-        android:text="New 14s"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="14s"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/refreshAttackTime" />
+        app:layout_constraintRight_toLeftOf="@+id/startGameButton" />
 
     <CheckBox
         android:id="@+id/editFieldsCheckbox"
         android:layout_width="125dp"
         android:layout_height="35dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
-        android:text="Change Times"
+        android:layout_marginBottom="8dp"
+        android:text="Edit Mode"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/startGameButton"
-        android:layout_width="158dp"
-        android:layout_height="101dp"
-        android:layout_marginBottom="21dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@color/game_not_running"
+        android:layout_width="128dp"
+        android:layout_height="78dp"
+        android:layout_marginBottom="62dp"
+        android:background="@drawable/only_border_button"
         android:text="Start"
-        app:layout_constraintBottom_toTopOf="@+id/editFieldsCheckbox"
+        android:textSize="27dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <EditText
@@ -85,7 +99,7 @@
         android:gravity="right"
         android:inputType="number"
         android:text="10"
-        android:textColor="@drawable/edit_text_selector"
+        android:textColor="@color/black"
         android:textSize="60sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="@+id/doublePoint"
@@ -103,7 +117,7 @@
         android:gravity="left"
         android:inputType="number"
         android:text="00"
-        android:textColor="@drawable/edit_text_selector"
+        android:textColor="@color/black"
         android:textSize="60sp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -134,34 +148,34 @@
         android:id="@+id/shotClockText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
         android:text="Shot clock"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shotClock" />
 
     <Button
         android:id="@+id/helpButton"
-        android:layout_width="40dp"
-        android:layout_height="38dp"
+        android:layout_width="39dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="\?"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="312dp" />
+        tools:layout_editor_absoluteX="313dp" />
 
     <TextView
         android:id="@+id/addSeconds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="103dp"
+        android:layout_marginLeft="102dp"
         android:layout_marginStart="107dp"
-        android:layout_marginTop="135dp"
+        android:layout_marginTop="149dp"
         android:clickable="true"
         android:text="+"
-        android:textSize="25sp"
+        android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -171,10 +185,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="110dp"
         android:layout_marginRight="110dp"
-        android:layout_marginTop="135dp"
+        android:layout_marginTop="149dp"
         android:clickable="true"
         android:text="-"
-        android:textSize="25sp"
+        android:textSize="30sp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -192,13 +206,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="241dp"
         android:text="0"
-        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.383"
+        app:layout_constraintHorizontal_bias="0.395"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.212" />
 
     <TextView
         android:id="@+id/guestResult"
@@ -211,18 +226,19 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="241dp"
         android:text="0"
-        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintHorizontal_bias="0.611"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.212" />
 
     <TextView
         android:id="@+id/addHomePoints"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -232,18 +248,18 @@
         android:clickable="true"
         android:gravity="center"
         android:text="+"
-        android:textSize="20sp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.297"
+        app:layout_constraintHorizontal_bias="0.286"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.48" />
+        app:layout_constraintVertical_bias="0.572" />
 
     <TextView
         android:id="@+id/removeHomePoints"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -253,18 +269,20 @@
         android:clickable="true"
         android:gravity="center"
         android:text="-"
-        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.297"
+        app:layout_constraintHorizontal_bias="0.286"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.534" />
+        app:layout_constraintVertical_bias="0.653" />
 
     <TextView
         android:id="@+id/addGuestPoints"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -274,18 +292,18 @@
         android:clickable="true"
         android:gravity="center"
         android:text="+"
-        android:textSize="20sp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.705"
+        app:layout_constraintHorizontal_bias="0.716"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.48" />
+        app:layout_constraintVertical_bias="0.572" />
 
     <TextView
         android:id="@+id/removeGuestPoints"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -295,12 +313,35 @@
         android:clickable="true"
         android:gravity="center"
         android:text="-"
-        android:textSize="20sp"
+        android:textSize="30dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.705"
+        app:layout_constraintHorizontal_bias="0.716"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.534" />
+        app:layout_constraintVertical_bias="0.653" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:layout_marginLeft="136dp"
+        android:text="Home"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/homeResult"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:layout_marginRight="134dp"
+        android:text="Guest"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/guestResult"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

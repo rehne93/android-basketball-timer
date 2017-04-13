@@ -51,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
     Button startPauseGameTimeButton;
 
     @BindView(R.id.refreshAttackTime)
-    Button newShotClockButton;
+    TextView newShotClockButton;
 
     @BindView(R.id.offensiveReboundButton)
-    Button newOffenseShotClockButton;
+    TextView newOffenseShotClockButton;
 
     @BindView(R.id.helpButton)
     Button helpButton;
