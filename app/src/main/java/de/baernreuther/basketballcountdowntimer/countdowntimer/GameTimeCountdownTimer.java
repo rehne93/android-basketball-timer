@@ -67,7 +67,7 @@ public class GameTimeCountdownTimer extends PausableCountDownTimer {
      */
     @Override
     public void onTick(long millisUntilFinished) {
-        String time = TimeConverter.getMinutesAndSecondsLeft(millisUntilFinished);
+        String time = TimeConverter.getGameTimeLeft(millisUntilFinished);
         String[] minutesAndSeconds = time.split(":");
         if (minutesAndSeconds.length != 2) {
             throw new UnknownFormatConversionException("Minutes and seconds got wrong format.");

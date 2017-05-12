@@ -21,9 +21,9 @@ public class HelpListener implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         MessageBoxFragment dia = new MessageBoxFragment();
-        dia.setMessage("Use Change Times when game is paused to be allowed to edit the times by hand." +
-                "Press Start to start the timer and then stop, to pause it." +
-                "Written by René Bärnreuther");
+        dia.setMessage("To change times, use \"Edit Mode\" when game is paused.\n" +
+                "Use +/- to control points.\n\n"+
+                "Written by René Bärnreuther.");
         dia.show(context.getFragmentManager(), "Test");
     }
 }

@@ -5,8 +5,8 @@
         android:angle="270"
         android:endColor="#FFFFFF"
         android:startColor="#FFFFFF" />
-    <corners android:radius="40dp" />
+    <corners android:radius="35dp" />
     <stroke
         android:width="5px"
-        android:color="@color/full_green" />
+        android:color="@color/colorPrimaryLight" />
 </shape>

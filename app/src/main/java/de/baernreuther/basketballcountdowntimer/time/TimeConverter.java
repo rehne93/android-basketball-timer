@@ -16,24 +16,30 @@ public  class TimeConverter {
      * @return a string containing the time left in the MM:SS format.
      */
     @NonNull
-    public static String getMinutesAndSecondsLeft(long millisLeft){
+    public static String getGameTimeLeft(long millisLeft){
         StringBuilder timeLeft = new StringBuilder();
-        int secondsLeft = (int) millisLeft/1000;
-
-        int minutesLeft = 0;
-        while(secondsLeft >= 60){
-            minutesLeft++;
-            secondsLeft-=60;
+        if (millisLeft <= 60000) {
+            int secondsLeft = (int) millisLeft / 1000;
+            int hundrethsLeft = (int) (millisLeft % 1000) / 10;
+            if (secondsLeft < 10)
+                timeLeft.append("0");
+            timeLeft.append(secondsLeft);
+            timeLeft.append(":");
+            if (hundrethsLeft < 10)
+                timeLeft.append("0");
+            timeLeft.append(hundrethsLeft);
         }
-        if(minutesLeft < 10) {
-            timeLeft.append("0");
+        else {
+            int minutesLeft = (int) millisLeft / 60000;
+            int secondsLeft = (int) (millisLeft % 60000) / 1000;
+            if(minutesLeft < 10)
+                timeLeft.append("0");
+            timeLeft.append(minutesLeft);
+            timeLeft.append(":");
+            if(secondsLeft < 10)
+                timeLeft.append("0");
+            timeLeft.append(secondsLeft);
         }
-        timeLeft.append(minutesLeft);
-        timeLeft.append(":");
-        if(secondsLeft < 10){
-            timeLeft.append("0");
-        }
-        timeLeft.append(secondsLeft);
         return timeLeft.toString();
     }
 
@@ -45,11 +51,13 @@ public  class TimeConverter {
     @NonNull
     public static String getAttackTimeLeft(long millisLeft){
         StringBuilder timeLeft = new StringBuilder();
-        int secondsLeft = (int) millisLeft/1000;
-        if(secondsLeft < 10){
-            timeLeft.append("0");
-        }
+        int secondsLeft = (int) millisLeft / 1000;
+        int tenthsLeft = (int) (millisLeft % 1000) / 100;
         timeLeft.append(secondsLeft);
+        if(secondsLeft < 10) {
+            timeLeft.append(".");
+            timeLeft.append(tenthsLeft);
+        }
         return timeLeft.toString();
     }
 

@@ -16,6 +16,7 @@ import de.baernreuther.basketballcountdowntimer.enums.ADD_OR_REMOVE;
 import de.baernreuther.basketballcountdowntimer.listener.buttons.AddOrRemovePointsListener;
 import de.baernreuther.basketballcountdowntimer.listener.buttons.HelpListener;
 import de.baernreuther.basketballcountdowntimer.listener.buttons.RefreshShotClockListener;
+import de.baernreuther.basketballcountdowntimer.listener.buttons.ResetEverythingListener;
 import de.baernreuther.basketballcountdowntimer.listener.buttons.StartStopGameListener;
 import de.baernreuther.basketballcountdowntimer.listener.checkboxes.ChangeValuesCheckBox;
 import de.baernreuther.basketballcountdowntimer.listener.editboxes.AttackTimeEditText;
@@ -95,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.guestResult)
     TextView guestResultTextView;
 
+    @BindView(R.id.resetEverythingButton)
+    Button resetEverythingButton;
+
     /*
     Returns a media player if it exists.
      */
@@ -162,6 +166,8 @@ public class MainActivity extends AppCompatActivity {
         secondsLeft.addTextChangedListener(new GameTimeEditText(editFieldsCheckbox, minutesLeft, secondsLeft));
 
         editFieldsCheckbox.setOnCheckedChangeListener(new ChangeValuesCheckBox(this, editFieldsCheckbox));
+
+        resetEverythingButton.setOnClickListener(new ResetEverythingListener(this, resetEverythingButton));
 
         addShotClockSecondTextView.setOnClickListener(new AddOrRemoveShotclockTime(shotClock, ADD_OR_REMOVE.ADD, startPauseGameTimeButton));
         removeShotClockSecondTextView.setOnClickListener(new AddOrRemoveShotclockTime(shotClock, ADD_OR_REMOVE.REMOVE, startPauseGameTimeButton));
